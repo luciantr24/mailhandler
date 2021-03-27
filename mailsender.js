@@ -1,6 +1,8 @@
-async function SendEmail(username, password, req){
+var nodeMailer = require('nodemailer');
+
+function SendEmail(username, password, req){
     return new Promise((resolve, reject) =>{
-        nodeMailer.createTransport({
+        let transporter = nodeMailer.createTransport({
             service: 'gmail',
             auth: {
                 user: username,
@@ -8,7 +10,7 @@ async function SendEmail(username, password, req){
             } 
         })
 
-        var mailOptions = {
+        let mailOptions = {
             from : req.body.email.from,
             to: req.body.email.to,
             subject: req.body.email.subject, 
@@ -19,10 +21,9 @@ async function SendEmail(username, password, req){
             if(err) console.log(err);
             console.log('Email sent: ' + info.response);
         });
-
     });
 }
 
-export default{
+export default {
     SendEmail
 }

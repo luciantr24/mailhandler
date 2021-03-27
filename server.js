@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 var express = require('express');
-var nodeMailer = require('nodemailer');
 import MailHandler from './mailsender';
 
 const bodyParser = require("body-parser");
